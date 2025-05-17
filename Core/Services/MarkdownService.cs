@@ -1,9 +1,36 @@
 ﻿using Markdig;
+using System.Diagnostics;
 
 namespace Core.Services
 {
     class MarkdownService
     {
+        public static async Task SalveAndOpen(string markdown)
+        {
+            // Tenta converter e salvar o Markdown como HTML
+            try
+            {
+                string solutionRoot = AppDomain.CurrentDomain.BaseDirectory;
+                string outputPath = Path.Combine(solutionRoot, "output.html");
+
+                await MarkdownService.ConvertAndSaveMarkdownToHtmlAsync(markdown, outputPath);
+                Console.WriteLine($"Markdown convertido e salvo com sucesso em: {outputPath}");
+
+                // Criar um processo para abrir o arquivo com o aplicativo padrão
+                ProcessStartInfo startInfo = new()
+                {
+                    FileName = outputPath,
+                    UseShellExecute = true
+                };
+
+                Process.Start(startInfo);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao converter Markdown para HTML: {ex.Message}");
+            }
+        }
+
         // Método para converter Markdown para HTML e salvar em arquivo
         public static async Task ConvertAndSaveMarkdownToHtmlAsync(string markdownContent, string outputFilePath)
         {
@@ -42,5 +69,6 @@ namespace Core.Services
             // Salvar o conteúdo no formato Markdown
             await File.WriteAllTextAsync("output.md", markdownContent);
         }
+
     }
 }

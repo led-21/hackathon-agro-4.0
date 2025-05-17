@@ -1,6 +1,6 @@
 ﻿namespace Core.Data;
 
-class AgronomicMockData
+public class AgronomicMockData
 {
     public static string receituario = @"
 Receituário Agronômico

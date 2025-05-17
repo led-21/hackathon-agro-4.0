@@ -1,13 +1,37 @@
-﻿using Core.Data;
+﻿using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
+using Core.Data;
+using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.ChatCompletion;
-using OpenAI.Chat;
-using System.Diagnostics;
 
 namespace Core.Services
 {
-    class AIService
+    public class AIService
     {
-        public async Task<string> Run(IChatCompletionService chatCompletionService, string receituario, string bula)
+        SecretClient client { get; set; }
+        Kernel? kernel { get; set; }
+        IChatCompletionService chatCompletionService { get; set; }
+
+        public AIService()
+        {
+            client = new SecretClient(new Uri("https://aitestevault.vault.azure.net/"), new DefaultAzureCredential(new DefaultAzureCredentialOptions()
+            {
+                ExcludeEnvironmentCredential = true,
+                AdditionallyAllowedTenants = { "*" }
+            }));
+
+            KeyVaultSecret openAISecret = client.GetSecret("openai");
+            KeyVaultSecret aiSearchSecret = client.GetSecret("aisearch");
+
+            IKernelBuilder kernelBuilder = Kernel.CreateBuilder();
+            kernelBuilder.AddAzureOpenAIChatCompletion("gpt-4o-mini", "https://adria-mac1pdzj-eastus2.cognitiveservices.azure.com/", openAISecret.Value);
+
+            Kernel kernel = kernelBuilder.Build();
+
+            chatCompletionService = kernel.GetRequiredService<IChatCompletionService>();
+        }
+
+        public async Task<string> AvaliarReceituario(string receituario, string bula)
         {
             ChatHistory chatHistory = [];
 
@@ -31,29 +55,6 @@ namespace Core.Services
             }
 
             Console.WriteLine();
-
-            // Tenta converter e salvar o Markdown como HTML
-            try
-            {
-                string solutionRoot = AppDomain.CurrentDomain.BaseDirectory;
-                string outputPath = Path.Combine(solutionRoot, "output.html");
-
-                await MarkdownService.ConvertAndSaveMarkdownToHtmlAsync(result, outputPath);
-                Console.WriteLine($"Markdown convertido e salvo com sucesso em: {outputPath}");
-
-                // Criar um processo para abrir o arquivo com o aplicativo padrão
-                ProcessStartInfo startInfo = new()
-                {
-                    FileName = outputPath,
-                    UseShellExecute = true
-                };
-
-                Process.Start(startInfo);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Erro ao converter Markdown para HTML: {ex.Message}");
-            }
 
             return result;
         }
