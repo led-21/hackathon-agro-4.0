@@ -1,7 +1,5 @@
 # hackathon-agro-4.0
-HACKATHON AGRO 4.0 - CREA MS - DESAFIO 1
-
-HACKATHON AGRO 4.0 - ACEA
+HACKATHON AGRO 4.0 - CREA MS
 
 # Exemplo output
 ## Análise Comparativa: Receituário vs Bula Oficial
