@@ -5,7 +5,7 @@ namespace Core.Services
 {
     class MarkdownService
     {
-        public static async Task SalveAndOpen(string markdown)
+        public static async Task SaveAndOpen(string markdown)
         {
             // Tenta converter e salvar o Markdown como HTML
             try
