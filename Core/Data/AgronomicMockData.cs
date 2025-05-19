@@ -29,7 +29,7 @@ Dose: 100 mL/ha
 Volume de Calda: 150 L/ha
 Modo de Aplicação: Pulverização foliar com trator
 Época de Aplicação: Início do estágio R3
-Intervalo de Segurança: 21 dias
+Intervalo de Segurança: 7 dias
 Número Máximo de Aplicações: 2 por ciclo
 Equipamento de Proteção Individual (EPI): Uso obrigatório conforme legislação vigente
 
@@ -50,11 +50,13 @@ Classificação:
 - Classe Ambiental: Classe I (Altamente Perigoso ao Meio Ambiente)
 
 Engeo Pleno S - Soja
-Dose: 200 a 400 mL/ha
+Percevejo-marrom (Euschistus heros)
+Dose: 200 mL/ha
 Intervalo de segurança: 7 dias
+Método de Aplicação: Pulverização foliar com trator
 Calda Terrestre: 150L
 Intervalo de aplicação: Realizar no máximo 2 aplicações em intervalos de 7 dias.
-Época de aplicação: Inspecionar periodicamente a cultura e pulverizar quando forem constatados os primeiros percevejos nos órgãos florais (capítulos). A maior dose deve ser utilizada em condições de alta população da praga e condições de clima favorável ao seu desenvolvimento.
+Época de aplicação: Inspecionar periodicamente a cultura e pulverizar quando forem constatados os primeiros percevejos nos órgãos florais (Início do estágio R3). A maior dose deve ser utilizada em condições de alta população da praga e condições de clima favorável ao seu desenvolvimento.
 
 Precauções:
 - Utilizar Equipamentos de Proteção Individual (EPI) durante a manipulação e aplicação.
@@ -88,7 +90,7 @@ Data da Última Atualização da Bula: 16/02/2024
 
 ## Análise de Discrepâncias
 
-1. *Volume de Calda*: O receituário especifica 150 L/ha, mas a bula não detalha o volume total recomendado para soja, apenas menciona o uso de adjuvante a 0,5% do volume.
+1. *Volume de Calda*: O receituário especifica 150 L/ha, pulverização foliar com trator, adjuvante a 0,5% do volume.
 
 2. *Método de Aplicação*: O receituário especifica aplicação terrestre com pulverizador de barra, mas esta informação não foi encontrada na seção da bula visualizada.
 

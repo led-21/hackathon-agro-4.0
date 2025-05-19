@@ -1,4 +1,7 @@
-﻿using Azure.Identity;
+﻿using Azure;
+using Azure.Identity;
+using Azure.Search.Documents;
+using Azure.Search.Documents.Models;
 using Azure.Security.KeyVault.Secrets;
 using Core.Data;
 using Microsoft.SemanticKernel;
@@ -11,6 +14,7 @@ namespace Core.Services
         SecretClient client { get; set; }
         Kernel? kernel { get; set; }
         IChatCompletionService chatCompletionService { get; set; }
+        SearchClient searchClient { get; set; }
 
         public AIService()
         {
@@ -26,9 +30,13 @@ namespace Core.Services
             IKernelBuilder kernelBuilder = Kernel.CreateBuilder();
             kernelBuilder.AddAzureOpenAIChatCompletion("gpt-4o-mini", "https://adria-mac1pdzj-eastus2.cognitiveservices.azure.com/", openAISecret.Value);
 
+            kernelBuilder.AddAzureAISearchVectorStore(new Uri("https://ai-search-agro.search.windows.net"), new AzureKeyCredential(aiSearchSecret.Value));
+
             Kernel kernel = kernelBuilder.Build();
 
             chatCompletionService = kernel.GetRequiredService<IChatCompletionService>();
+
+            searchClient = new SearchClient(new Uri("https://ai-search-agro.search.windows.net"), "azureblob-index-agro", new AzureKeyCredential(aiSearchSecret.Value));
         }
 
         public async Task<string> AvaliarReceituario(string receituario, string bula)
@@ -57,6 +65,18 @@ namespace Core.Services
             Console.WriteLine();
 
             return result;
+        }
+
+        public async Task<string> AvaliarReceituarioComBusca(string receituario)
+        {
+            var searchOptions = new SearchOptions()
+            {
+                Size= 5
+            };
+
+            var searchResults = await searchClient.SearchAsync<SearchDocument>(receituario, searchOptions);
+
+            return searchResults.Value.GetResults().First().Document.ToString();
         }
     }
 }

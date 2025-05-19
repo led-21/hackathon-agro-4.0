@@ -24,6 +24,14 @@ namespace Core.Services
                 };
 
                 Process.Start(startInfo);
+
+                startInfo = new()
+                {
+                    FileName = "output.md",
+                    UseShellExecute = true
+                };
+
+                Process.Start(startInfo);
             }
             catch (Exception ex)
             {
