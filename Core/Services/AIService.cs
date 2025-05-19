@@ -4,8 +4,10 @@ using Azure.Search.Documents;
 using Azure.Search.Documents.Models;
 using Azure.Security.KeyVault.Secrets;
 using Core.Data;
+using Core.KernelFunctions;
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.ChatCompletion;
+using Microsoft.SemanticKernel.Connectors.OpenAI;
 
 namespace Core.Services
 {
@@ -30,9 +32,11 @@ namespace Core.Services
             IKernelBuilder kernelBuilder = Kernel.CreateBuilder();
             kernelBuilder.AddAzureOpenAIChatCompletion("gpt-4o-mini", "https://adria-mac1pdzj-eastus2.cognitiveservices.azure.com/", openAISecret.Value);
 
+            kernelBuilder.Plugins.AddFromType<EmailNotificationPlugin>("EmailNotification");
+
             kernelBuilder.AddAzureAISearchVectorStore(new Uri("https://ai-search-agro.search.windows.net"), new AzureKeyCredential(aiSearchSecret.Value));
 
-            Kernel kernel = kernelBuilder.Build();
+            kernel = kernelBuilder.Build();
 
             chatCompletionService = kernel.GetRequiredService<IChatCompletionService>();
 
@@ -47,13 +51,22 @@ namespace Core.Services
                 "Seu objetivo é comparar o receituário e a bula fornecidos, identificando inconsistências e não conformidades." +
                 "Se houver alguma inconsistência ou não conformidade, forneça uma explicação detalhada e sugira correções." +
                 "Se tudo estiver correto, informe que não há inconsistências ou não conformidades." +
+                "Em caso de desconformidade envie a notificaçao" +
                 $"Exemplo de resposta: {AgronomicMockData.exemplo}");
 
             chatHistory.AddUserMessage("Compare o receituário e a bula fornecidos, identificando inconsistências e não conformidades." +
                 $"Receituário:\n{receituario}" +
                 $"Bula:\n{bula}");
 
-            var response = chatCompletionService.GetStreamingChatMessageContentsAsync(chatHistory);
+            OpenAIPromptExecutionSettings openAIPromptExecutionSettings = new()
+            {
+                FunctionChoiceBehavior = FunctionChoiceBehavior.Auto()
+            };
+
+            var response = chatCompletionService.GetStreamingChatMessageContentsAsync(chatHistory,
+                executionSettings: openAIPromptExecutionSettings,
+                kernel: kernel);
+
             var result = "";
 
             await foreach (var chunk in response)
@@ -71,7 +84,7 @@ namespace Core.Services
         {
             var searchOptions = new SearchOptions()
             {
-                Size= 5
+                Size = 5
             };
 
             var searchResults = await searchClient.SearchAsync<SearchDocument>(receituario, searchOptions);
