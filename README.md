@@ -1,6 +1,9 @@
 # hackathon-agro-4.0
 HACKATHON AGRO 4.0 - CREA MS
 
+## Inovação
+[Link para a inovaçao da solução](INOVACAO.md)
+
 ## Arquitetura Geral
 
 ### Camada de Configuração e Segurança
@@ -47,40 +50,39 @@ HACKATHON AGRO 4.0 - CREA MS
 
 
 # Exemplo output
-## Análise Comparativa: Receituário vs Bula Oficial
+# Análise Comparativa: Receituário vs Bula Oficial
 
 ## Comparação de Dados Técnicos
 
-| Parâmetro                       | Receituário                                        | Bula Oficial                                                 | Conformidade         |
-|---------------------------------|---------------------------------------------------|-------------------------------------------------------------|----------------------|
-| *Produto/Princípios Ativos*     | Tiametoxam 141 g/L + Lambda-cialotrina 106 g/L   | TIAMETOXAM 141 g/L + LAMBDA-CIALOTRINA 106 g/L             | ✅ Conforme           |
-| *Cultura*                       | Soja (Glycine max)                                | Soja                                                        | ✅ Conforme           |
-| *Praga-alvo*                    | Percevejo-marrom (Euschistus heros)              | Percevejo-marrom (Euschistus heros)                         | ✅ Conforme           |
-| *Dose*                          | 200 mL/ha                                         | 200 mL/ha                                                   | ✅ Conforme           |
-| *Volume de Calda*               | 150 L/ha                                          | 150 L/ha                                                    | ✅ Conforme           |
-| *Modo de Aplicação*             | Pulverização foliar com trator                     | Pulverização foliar                                         | ✅ Conforme           |
-| *Época de Aplicação*            | Início do estágio R3                              | Início do estágio R3 de soja                                | ✅ Conforme           |
-| *Intervalo de Segurança*         | 7 dias                                            | 30 dias                                                     | ⚠ Não conforme       |
-| *Número Máximo de Aplicações*    | 2 por ciclo                                       | 3 por ciclo                                                 | ⚠ Não conforme       |
-| *Uso de EPI*                    | Uso obrigatório conforme legislação vigente       | Uso obrigatório conforme legislação vigente                  | ✅ Conforme           |
+| Parâmetro | Receituário | Bula Oficial | Conformidade |
+|-----------|-------------|--------------|--------------|
+| *Produto/Princípios Ativos* | Tiametoxam 141 g/L + Lambda-cialotrina 106 g/L | TIAMETHOXAM 141 g/L + LAMBDA-CYHALOTHRIN 106 g/L | ✅ Conforme |
+| *Cultura* | Soja (Glycine max) | Soja | ✅ Conforme |
+| *Praga-alvo* | Percevejo-marrom (Euschistus heros) | Percevejo-marrom (Euschistus heros) | ✅ Conforme |
+| *Dose* | 100 mL/ha | 200 mL/ha (mínimo) | ⚠ Não conforme |
+| *Volume de Calda* | 2150 L/ha | 200 L/ha (padrão para soja) | ⚠ Não conforme |
+| *Método de Aplicação* | Pulverização foliar com trator | Pulverização foliar | ✅ Conforme |
+| *Época de Aplicação* | Início do estágio R3 | Varia conforme a praga e cultura | ✅ Conformidade Geral |
+| *Intervalo de Segurança* | 7 dias | 30 dias para soja | ⚠ Não conforme |
+| *Número Máximo de Aplicações* | 2 por ciclo | 2 a 3 aplicações (dependendo da praga) | ✅ Conforme |
+| *Uso de EPI* | Uso obrigatório conforme legislação vigente | Uso obrigatório conforme legislação vigente | ✅ Conforme |
 
 ## Análise de Discrepâncias
 
-1. **Intervalo de Segurança**: 
-   - O receituário indica um intervalo de segurança de 7 dias, enquanto a bula oficial especifica 30 dias para a soja. Essa é uma discrepância significativa, pois o intervalo de segurança é importante para garantir que o produto não cause efeitos indesejados na saúde humana ou no meio ambiente após a aplicação.
-   
-   **Correção Sugerida**: O intervalo de segurança no receituário deve ser alterado para refletir a bula oficial, 30 dias antes da colheita para soja.
+1. **Dose**: O receituário prescreve 100 mL/ha, enquanto a bula indica uma dose mínima de 200 mL/ha para essa praga e cultura. É essencial que a dose prescrita seja adequada para garantir a eficácia do produto.
+2. **Volume de Calda**: O receituário especifica 2150 L/ha, o que está significativamente acima do volume recomendado na bula, que é de 200 L/ha.
+3. **Intervalo de Segurança**: O receituário indica um intervalo de segurança de 7 dias, mas na bula para soja, o intervalo é de 30 dias, o que é importante para evitar contaminações e garantir a segurança alimentar.
 
-2. **Número Máximo de Aplicações**: 
-   - O receituário prescreve um máximo de 2 aplicações por ciclo, enquanto a bula oficial permite até 3 aplicações. Essa diferença pode levar à subutilização do produto e, potencialmente, a uma eficácia reduzida no controle da praga.
-
-   **Correção Sugerida**: O receituário deve ser modificado para acomodar o número máximo de 3 aplicações conforme indicado na bula.
-   
 ## Conclusão
 
-O receituário apresenta boa conformidade com a bula, mas há inconsistências no intervalo de segurança e no número máximo de aplicações. As correções necessárias são cruciais para garantir a segurança no uso do produto e maximizar sua eficácia.
+O receituário apresenta algumas não conformidades críticas em relação às recomendações da bula oficial. As principais não conformidades estão nas doses prescritas, volume de calda e intervalo de segurança, que podem comprometer tanto a eficácia do controle da praga quanto a segurança ao consumidor.
 
-Por favor, proceda com as correções e, com base nas não conformidades, notificarei o responsável.Notificações de não conformidade foram enviadas para o responsável. As seguintes correções devem ser feitas no receituário:
+### Sugestões de Correção:
+- **Ajustar a Dose**: Alterar a dose prescrita para no mínimo 200 mL/ha, conforme indicado na bula.
+- **Reduzir o Volume de Calda**: Ajustar o volume de calda para o máximo de 200 L/ha, a menos que haja justificativa técnica para o uso de um volume maior.
+- **Revisar o Intervalo de Segurança**: Modificar o intervalo de segurança para 30 dias antes da colheita, de acordo com a bula.
+
+Diante das não conformidades encontradas, irei notificar o responsável.A notificação sobre as não conformidades encontradas no receituário foi enviada com sucesso ao Engenheiro Agrônomo João da Silva. As correções sugeridas foram destacadas para garantir que sejam feitas as devidas adequações para assegurar a conformidade com as diretrizes da bula oficial. 
 
 1. **Intervalo de Segurança**: Alterar de 7 dias para 30 dias conforme a bula oficial.
 2. **Número Máximo de Aplicações**: Alterar de 2 para 3 por ciclo conforme a bula oficial.
