@@ -25,8 +25,8 @@ Produto Prescrito:
 Nome Comercial: Engeo Pleno S
 Ingrediente Ativo: Tiametoxam 141 g/L + Lambda-cialotrina 106 g/L
 Classe: Inseticida
-Dose: 200 mL/ha
-Volume de Calda: 150 L/ha
+Dose: 100 mL/ha
+Volume de Calda: 2150 L/ha
 Modo de Aplicação: Pulverização foliar com trator
 Época de Aplicação: Início do estágio R3
 Intervalo de Segurança: 7 dias
