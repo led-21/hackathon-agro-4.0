@@ -40,7 +40,7 @@ namespace Core.Services
 
             chatCompletionService = kernel.GetRequiredService<IChatCompletionService>();
 
-            searchClient = new SearchClient(new Uri("https://ai-search-agro.search.windows.net"), "azureblob-index-agro", new AzureKeyCredential(aiSearchSecret.Value));
+            searchClient = new SearchClient(new Uri("https://ai-search-agro.search.windows.net"), "rag-1747865311429", new AzureKeyCredential(aiSearchSecret.Value));
         }
 
         public async Task<string> AvaliarReceituario(string receituario, string bula)
