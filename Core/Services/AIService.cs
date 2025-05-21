@@ -17,6 +17,7 @@ namespace Core.Services
         Kernel? kernel { get; set; }
         IChatCompletionService chatCompletionService { get; set; }
         SearchClient searchClient { get; set; }
+        SearchClient searchClientRAG { get; set; }
 
         public AIService()
         {
@@ -40,7 +41,9 @@ namespace Core.Services
 
             chatCompletionService = kernel.GetRequiredService<IChatCompletionService>();
 
-            searchClient = new SearchClient(new Uri("https://ai-search-agro.search.windows.net"), "rag-1747865311429", new AzureKeyCredential(aiSearchSecret.Value));
+            searchClient = new SearchClient(new Uri("https://ai-search-agro.search.windows.net"), "azureblob-index-agro", new AzureKeyCredential(aiSearchSecret.Value));
+
+            searchClientRAG = new SearchClient(new Uri("https://ai-search-agro.search.windows.net"), "rag-1747865311429", new AzureKeyCredential(aiSearchSecret.Value));
         }
 
         public async Task<string> AvaliarReceituario(string receituario, string bula)
@@ -85,12 +88,24 @@ namespace Core.Services
             var searchOptions = new SearchOptions()
             {
                 Size = 5,
-                
             };
 
             var searchResults = await searchClient.SearchAsync<SearchDocument>(receituario, searchOptions);
 
             return searchResults.Value.GetResults().First().Document.ToString();
+        }
+
+        public async Task<string> BuscarRAG(string receituario)
+        {
+            var searchOptions = new SearchOptions()
+            {
+                Size = 5,
+            };
+
+            var searchResults = await searchClientRAG.SearchAsync<SearchDocument>(receituario, searchOptions);
+
+            return string.Concat(searchResults.Value.GetResults()
+                .Select(x => x.Document["chunk"]).ToList());
         }
     }
 }
