@@ -50,7 +50,7 @@ HACKATHON AGRO 4.0 - CREA MS
 
 
 # Exemplo output
-# Análise Comparativa: Receituário vs Bula Oficial
+## Análise Comparativa: Receituário vs Bula Oficial
 
 ## Comparação de Dados Técnicos
 
