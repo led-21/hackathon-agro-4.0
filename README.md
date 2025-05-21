@@ -82,7 +82,7 @@ O receituário apresenta algumas não conformidades críticas em relação às r
 - **Reduzir o Volume de Calda**: Ajustar o volume de calda para o máximo de 200 L/ha, a menos que haja justificativa técnica para o uso de um volume maior.
 - **Revisar o Intervalo de Segurança**: Modificar o intervalo de segurança para 30 dias antes da colheita, de acordo com a bula.
 
-Diante das não conformidades encontradas, irei notificar o responsável.A notificação sobre as não conformidades encontradas no receituário foi enviada com sucesso ao Engenheiro Agrônomo João da Silva. As correções sugeridas foram destacadas para garantir que sejam feitas as devidas adequações para assegurar a conformidade com as diretrizes da bula oficial. 
+Diante das não conformidades encontradas, irei notificar o responsável. 
 
-1. **Intervalo de Segurança**: Alterar de 7 dias para 30 dias conforme a bula oficial.
-2. **Número Máximo de Aplicações**: Alterar de 2 para 3 por ciclo conforme a bula oficial.
+### Notificação
+A notificação sobre as não conformidades encontradas no receituário foi enviada com sucesso ao Engenheiro Agrônomo João da Silva. As correções sugeridas foram destacadas para garantir que sejam feitas as devidas adequações para assegurar a conformidade com as diretrizes da bula oficial. 
