@@ -45,15 +45,12 @@ A ferramenta apoia **agrônomos, técnicos e fiscais** na verificação rápida 
 ---
 
 ## ✅ 4. Clareza e Comunicação
-✔️ **O pitch é claro, bem estruturado e empático para o público-alvo?**  
-Sim. A estrutura da aplicação e sua proposta de valor podem ser facilmente explicadas para o público-alvo (**agrônomos, fiscais, empresas de defensivos e cooperativas**).
+A estrutura da aplicação e sua proposta de valor podem ser facilmente explicadas para o público-alvo (**agrônomos, fiscais, empresas de defensivos e cooperativas**).
 
-### 🗣️ Fatores que tornam o pitch eficaz:
+### 🗣️ Fatores que tornam um pitch eficaz:
 - **A linguagem do sistema é específica do domínio agrícola**.
 - **A IA atua como um "auditor inteligente"**, e o plugin de e-mail simula uma ação concreta e compreensível.
 - Com um **pitch estruturado**, é possível mostrar **casos de uso reais e demonstrações práticas** em poucos minutos.
-
-📢 **Se você for apresentar, posso te ajudar a construir um pitch de 2 minutos!**
 
 ---
 
