@@ -51,7 +51,7 @@ namespace Core.Services
                 "Seu objetivo é comparar o receituário e a bula fornecidos, identificando inconsistências e não conformidades." +
                 "Se houver alguma inconsistência ou não conformidade, forneça uma explicação detalhada e sugira correções." +
                 "Se tudo estiver correto, informe que não há inconsistências ou não conformidades." +
-                "Em caso de desconformidade envie a notificaçao" +
+                "Em caso de não conformidade envie a notificaçao" +
                 $"Exemplo de resposta: {AgronomicMockData.exemplo}");
 
             chatHistory.AddUserMessage("Compare o receituário e a bula fornecidos, identificando inconsistências e não conformidades." +
@@ -80,11 +80,12 @@ namespace Core.Services
             return result;
         }
 
-        public async Task<string> AvaliarReceituarioComBusca(string receituario)
+        public async Task<string> BuscarBula(string receituario)
         {
             var searchOptions = new SearchOptions()
             {
-                Size = 5
+                Size = 5,
+                
             };
 
             var searchResults = await searchClient.SearchAsync<SearchDocument>(receituario, searchOptions);

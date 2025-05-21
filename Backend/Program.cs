@@ -1,9 +1,17 @@
-using Core.Services;
 using Core.Data;
+using Core.Services;
+using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
+
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Receituario AI API", Version = "v1" });
+    c.SchemaFilter<TextAreaSchemaFilter>();
+});
 
 // Registra AIService como singleton
 builder.Services.AddSingleton<AIService>();
@@ -21,9 +29,12 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+if(app.Environment.IsDevelopment())
 {
+    app.UseDeveloperExceptionPage();
+    app.UseSwagger();
+    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Receituario AI API v1"));
+
     app.MapOpenApi();
 }
 
@@ -31,7 +42,7 @@ app.UseCors("AllowAll");
 
 app.UseHttpsRedirection();
 
-app.MapPost("verificar/receituario", async (AIService aIService, string receituario, string? bula) =>
+app.MapPost("verificar/receituario/bula", async (AIService aIService, string receituario, string? bula) =>
 {
     try
     {
@@ -45,4 +56,30 @@ app.MapPost("verificar/receituario", async (AIService aIService, string receitua
     }
 });
 
+app.MapPost("verificar/receituario", async (AIService aIService, string receituario) =>
+{
+    try
+    {
+        var result = await aIService.AvaliarReceituario(receituario, await aIService.BuscarBula(receituario));
+
+        return Results.Ok(result);
+    }
+    catch (Exception ex)
+    {
+        return Results.BadRequest(ex.Message);
+    }
+});
+
 app.Run();
+
+
+public class TextAreaSchemaFilter : ISchemaFilter
+{
+    public void Apply(OpenApiSchema schema, SchemaFilterContext context)
+    {
+        if (context.Type == typeof(string))
+        {
+            schema.Format = "textarea";
+        }
+    }
+}
