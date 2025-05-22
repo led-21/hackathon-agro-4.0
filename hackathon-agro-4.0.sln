@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backend", "Backend\Backend.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{CCD255D9-9D38-4575-AF00-D31DF658041E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgroSynapse", "Multiplataforma\AgroSynapse\AgroSynapse.csproj", "{41B25E10-BE9D-4C53-B40E-9E3026A7E6D0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,8 +43,23 @@ Global
 		{CCD255D9-9D38-4575-AF00-D31DF658041E}.Release|x64.Build.0 = Release|Any CPU
 		{CCD255D9-9D38-4575-AF00-D31DF658041E}.Release|x86.ActiveCfg = Release|Any CPU
 		{CCD255D9-9D38-4575-AF00-D31DF658041E}.Release|x86.Build.0 = Release|Any CPU
+		{41B25E10-BE9D-4C53-B40E-9E3026A7E6D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41B25E10-BE9D-4C53-B40E-9E3026A7E6D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41B25E10-BE9D-4C53-B40E-9E3026A7E6D0}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{41B25E10-BE9D-4C53-B40E-9E3026A7E6D0}.Debug|x64.Build.0 = Debug|Any CPU
+		{41B25E10-BE9D-4C53-B40E-9E3026A7E6D0}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{41B25E10-BE9D-4C53-B40E-9E3026A7E6D0}.Debug|x86.Build.0 = Debug|Any CPU
+		{41B25E10-BE9D-4C53-B40E-9E3026A7E6D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41B25E10-BE9D-4C53-B40E-9E3026A7E6D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41B25E10-BE9D-4C53-B40E-9E3026A7E6D0}.Release|x64.ActiveCfg = Release|Any CPU
+		{41B25E10-BE9D-4C53-B40E-9E3026A7E6D0}.Release|x64.Build.0 = Release|Any CPU
+		{41B25E10-BE9D-4C53-B40E-9E3026A7E6D0}.Release|x86.ActiveCfg = Release|Any CPU
+		{41B25E10-BE9D-4C53-B40E-9E3026A7E6D0}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {725ECD92-075A-498D-A6DB-2FF81817F8E9}
 	EndGlobalSection
 EndGlobal

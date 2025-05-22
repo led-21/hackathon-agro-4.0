@@ -33,7 +33,7 @@ if(app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
     app.UseSwagger();
-    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Receituario AI API v1"));
+    app.UseSwaggerUI();
 
     app.MapOpenApi();
 }
@@ -61,6 +61,20 @@ app.MapPost("verificar/receituario", async (AIService aIService, string receitua
     try
     {
         var result = await aIService.AvaliarReceituario(receituario, await aIService.BuscarBula(receituario));
+
+        return Results.Ok(result);
+    }
+    catch (Exception ex)
+    {
+        return Results.BadRequest(ex.Message);
+    }
+});
+
+app.MapPost("verificar/receituario/rag", async (AIService aIService, string receituario) =>
+{
+    try
+    {
+        var result = await aIService.AvaliarReceituario(receituario, await aIService.BuscarRAG(receituario));
 
         return Results.Ok(result);
     }

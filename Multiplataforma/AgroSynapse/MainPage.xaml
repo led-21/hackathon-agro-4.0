@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AgroSynapse.MainPage"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="20" Padding="20">
+            <!-- Título -->
+            <Label Text="AgroSynapse" FontSize="32" FontAttributes="Bold" 
+                   HorizontalOptions="Center" TextColor="{DynamicResource PrimaryTextColor}"/>
+
+            <!-- Área de Entrada de Texto -->
+            <Border BackgroundColor="{DynamicResource BorderColor}" Padding="10">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Insira o Receituário Agronômico" FontSize="18" FontAttributes="Bold"/>
+                    <Entry x:Name="PrescriptionEntry" Placeholder="Digite ou cole o receituário aqui..." 
+                           HeightRequest="100" FontSize="14" IsTextPredictionEnabled="False" 
+                           TextColor="{DynamicResource PrimaryTextColor}"/>
+                    <Button Text="Analisar Receituário" x:Name="AnalyzeButton" 
+                            Clicked="OnAnalyzeButtonClicked" BackgroundColor="#4CAF50" TextColor="White" CornerRadius="10"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Indicador de Carregamento -->
+            <ActivityIndicator x:Name="LoadingIndicator" IsVisible="False" IsRunning="True" Color="#4CAF50"/>
+
+            <!-- Área de Resultado -->
+            <Border x:Name="ResultFrame" IsVisible="False" BackgroundColor="{DynamicResource BorderColor}" Padding="10">
+                <VerticalStackLayout>
+                    <Label Text="Resultado da Análise" FontSize="18" FontAttributes="Bold"/>
+                    <ScrollView HeightRequest="300">
+                        <Label x:Name="ResultLabel" FontSize="14" TextColor="{DynamicResource PrimaryTextColor}"/>
+                    </ScrollView>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Botão de Notificação -->
+            <Button Text="Enviar Notificação" x:Name="NotifyButton" IsVisible="False" 
+                        Clicked="OnNotifyButtonClicked" BackgroundColor="#2196F3" TextColor="White" CornerRadius="10"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

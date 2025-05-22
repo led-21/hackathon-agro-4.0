@@ -7,7 +7,7 @@ Sim. A proposta de utilizar IA generativa (LLMs) para analisar automaticamente r
 ### 💡 Diferenciais:
 - **Integração com Semantic Kernel**, permitindo que a IA execute ações autônomas (como enviar notificações).
 - **Uso de Azure OpenAI + Azure Search** para buscar documentos relevantes e comparar com entradas manuais.
-- **Automatização de um processo tipicamente manual**, sujeito a erro humano e com alto risco regulatório.
+- **Automatização de um processo tipicamente manual**, envio de notificações e e-mails.
 
 ---
 
@@ -45,11 +45,7 @@ A ferramenta apoia **agrônomos, técnicos e fiscais** na verificação rápida 
 ---
 
 ## ✅ 4. Clareza e Comunicação
-A estrutura da aplicação e sua proposta de valor podem ser facilmente explicadas para o público-alvo (**agrônomos, fiscais, empresas de defensivos e cooperativas**).
-
-### 🗣️ Fatores que tornam um pitch eficaz:
-- **A linguagem do sistema é específica do domínio agrícola**.
-- **A IA atua como um "auditor inteligente"**, e o plugin de e-mail simula uma ação concreta e compreensível.
+- A estrutura da aplicação e sua proposta de valor podem ser facilmente explicadas para o público-alvo (**agrônomos, fiscais, empresas de defensivos e cooperativas**).
 - Com um **pitch estruturado**, é possível mostrar **casos de uso reais e demonstrações práticas** em poucos minutos.
 
 ---
@@ -59,7 +55,7 @@ A estrutura da aplicação e sua proposta de valor podem ser facilmente explicad
 Sim, com ressalvas que podem ser tratadas facilmente:
 
 ### 🔒 Medidas de segurança aplicadas:
-✅ **O sistema simula notificações** em conformidade com a legislação de fiscalização agronômica.  
+✅ **O sistema simula notificações** fase testes.
 ✅ **Utiliza Azure Key Vault** para proteger segredos.  
 ✅ **Pode ser hospedado em ambiente Azure seguro**, com compliance em **LGPD e ISO**.
 
