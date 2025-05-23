@@ -10,7 +10,7 @@ namespace AgroSynapse
         private readonly HttpClient _httpClient;
         private const string BackendHostAddress = "http://localhost:5260";
 
-        public static string receituario = AgronomicMockData.receituarioHerbicida; // Exemplo de receituário para teste
+        public static string receituario = AgronomicMockData.receituario; // Exemplo de receituário para teste
         public MainPage()
         {
             Application.Current!.UserAppTheme = AppTheme.Dark;
