@@ -1,4 +1,7 @@
-﻿using System.Text;
+﻿using AgroSynapse.View;
+using Markdig;
+using System.Text;
+using AgroSynapse.Data;
 
 namespace AgroSynapse
 {
@@ -7,44 +10,10 @@ namespace AgroSynapse
         private readonly HttpClient _httpClient;
         private const string BackendHostAddress = "http://localhost:5260";
 
-        public static string receituario = @"
-Receituário Agronômico
-
-Profissional Responsável:
-Nome: Eng. Agrônomo João da Silva
-CREA: 123456789
-ART: 987654321
-
-Usuário:
-Nome: Maria Oliveira
-CPF: 123.456.789-00
-
-Propriedade:
-Fazenda Boa Esperança
-Município: Campo Grande - MS
-
-Diagnóstico:
-Infestação de percevejo-marrom (Euschistus heros) na cultura da soja, estágio R3.
-
-Produto Prescrito:
-Nome Comercial: Engeo Pleno S
-Ingrediente Ativo: Tiametoxam 141 g/L + Lambda-cialotrina 106 g/L
-Classe: Inseticida
-Dose: 100 mL/ha
-Volume de Calda: 2150 L/ha
-Modo de Aplicação: Pulverização foliar com trator
-Época de Aplicação: Início do estágio R3
-Intervalo de Segurança: 7 dias
-Número Máximo de Aplicações: 2 por ciclo
-Equipamento de Proteção Individual (EPI): Uso obrigatório conforme legislação vigente
-
-Data de Emissão: 16/05/2025
-Assinatura do Responsável Técnico: ______________________
-";
-
+        public static string receituario = AgronomicMockData.receituarioHerbicida; // Exemplo de receituário para teste
         public MainPage()
         {
-            Application.Current.UserAppTheme = AppTheme.Dark;
+            Application.Current!.UserAppTheme = AppTheme.Dark;
             InitializeComponent();
             _httpClient = new HttpClient();
             PrescriptionEntry.Text = receituario; // Preenche o campo de texto com o receituário de exemplo
@@ -73,12 +42,74 @@ Assinatura do Responsável Técnico: ______________________
 
                 // Envia o texto do receituário como JSON
                 var content = new StringContent($"{{ \"receituario\": \"{Uri.EscapeDataString(prescriptionText)}\" }}", Encoding.UTF8, "application/json");
-                var response = await _httpClient.PostAsync($"{BackendHostAddress}/verificar/receituario?receituario={Uri.EscapeDataString(prescriptionText)}", content);
+                string searchMethod = OptionsPage.GetSearchEndpoint();
+
+                var response = await _httpClient.PostAsync($"{BackendHostAddress}{searchMethod}?receituario={Uri.EscapeDataString(prescriptionText)}", content);
 
                 if (response.IsSuccessStatusCode)
                 {
                     var markdownResult = await response.Content.ReadAsStringAsync();
-                    ResultLabel.Text = markdownResult; // Exibe o resultado em Markdown
+
+                    string htmlResult = Markdig.Markdown.ToHtml(markdownResult,
+                                                      (new MarkdownPipelineBuilder()
+                                                      .UseAdvancedExtensions()
+                                                      .UsePipeTables()
+                                                      .Build())); // Exibe o resultado em Markdown
+
+                    // Substitua o trecho problemático pelo código abaixo dentro do método AnalyzePrescription
+
+                    ResultWebView.Source = new HtmlWebViewSource
+                    {
+                        Html = $@"
+                    <!DOCTYPE html>
+                    <html lang='pt-BR'>
+                    <head>
+                        <meta charset='UTF-8'>
+                        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                        <style>
+                            body {{
+                                background-color: #181818;
+                                color: #e0e0e0;
+                                font-family: 'Segoe UI', Arial, sans-serif;
+                                margin: 0;
+                                padding: 1.5em;
+                            }}
+                            h1, h2, h3, h4, h5, h6 {{
+                                color: #90caf9;
+                            }}
+                            a {{
+                                color: #80cbc4;
+                            }}
+                            table {{
+                                width: 100%;
+                                border-collapse: collapse;
+                                background-color: #232323;
+                            }}
+                            th, td {{
+                                border: 1px solid #333;
+                                padding: 8px;
+                            }}
+                            th {{
+                                background-color: #263238;
+                                color: #b3e5fc;
+                            }}
+                            tr:nth-child(even) {{
+                                background-color: #20232a;
+                            }}
+                            code, pre {{
+                                background: #222;
+                                color: #b5cea8;
+                                border-radius: 4px;
+                                padding: 2px 6px;
+                            }}
+                        </style>
+                    </head>
+                    <body>
+                        {htmlResult}
+                    </body>
+                    </html>
+                    "
+                    };
                     ResultFrame.IsVisible = true;
                     NotifyButton.IsVisible = true;
                 }

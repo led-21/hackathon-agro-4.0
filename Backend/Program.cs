@@ -48,7 +48,7 @@ app.MapPost("verificar/receituario/bula", async (AIService aIService, string rec
     {
         var result = await aIService.AvaliarReceituario(receituario, bula ?? AgronomicMockData.bula);
 
-        return Results.Ok(result);
+        return Results.Content(result);
     }
     catch (Exception ex)
     {
@@ -62,7 +62,7 @@ app.MapPost("verificar/receituario", async (AIService aIService, string receitua
     {
         var result = await aIService.AvaliarReceituario(receituario, await aIService.BuscarBula(receituario));
 
-        return Results.Ok(result);
+        return Results.Content(result);
     }
     catch (Exception ex)
     {
@@ -76,7 +76,7 @@ app.MapPost("verificar/receituario/rag", async (AIService aIService, string rece
     {
         var result = await aIService.AvaliarReceituario(receituario, await aIService.BuscarRAG(receituario));
 
-        return Results.Ok(result);
+        return Results.Content(result);
     }
     catch (Exception ex)
     {

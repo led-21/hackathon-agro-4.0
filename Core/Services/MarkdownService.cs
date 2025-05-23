@@ -1,9 +1,10 @@
 ﻿using Markdig;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace Core.Services
 {
-    class MarkdownService
+    public class MarkdownService
     {
         public static async Task SaveAndOpen(string markdown)
         {
@@ -77,6 +78,44 @@ namespace Core.Services
             // Salvar o conteúdo no formato Markdown
             await File.WriteAllTextAsync("output.md", markdownContent);
         }
+
+        public static string ConvertMarkdownToHtml(string markdownContent)
+        {
+            if (string.IsNullOrWhiteSpace(markdownContent))
+            {
+                throw new ArgumentException("O conteúdo Markdown não pode ser vazio ou nulo.");
+            }
+
+            markdownContent = Regex.Replace(markdownContent, @"(\r\n|\r|\n){1,}", "\n");
+
+
+            // Converter Markdown para HTML usando a biblioteca Markdig
+            var pipeline = new MarkdownPipelineBuilder()
+                                .UseGridTables() // Extensão para tabelas no formato grid
+                                .UsePipeTables() // Extensão para tabelas com pipes
+                                .UseAdvancedExtensions()
+                                .Build();
+
+            string htmlContent = Markdig.Markdown.ToHtml(markdownContent, pipeline);
+
+            // Adicionar estrutura HTML básica se necessário
+            if (!htmlContent.Contains("<html>", StringComparison.OrdinalIgnoreCase))
+            {
+                htmlContent = $@"<!DOCTYPE html>
+                                  <html>
+                                        <head>
+                                            <meta charset=""utf-8"">
+                                            <title>Documento Convertido</title>
+                                        </head>
+                                        <body>
+                                            {htmlContent}
+                                        </body>
+                                  </html>";
+            }
+
+            return htmlContent;
+        }
+
 
     }
 }

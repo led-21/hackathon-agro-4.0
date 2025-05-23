@@ -1,4 +1,5 @@
-﻿namespace AgroSynapse
+﻿
+namespace AgroSynapse
 {
     public partial class App : Application
     {

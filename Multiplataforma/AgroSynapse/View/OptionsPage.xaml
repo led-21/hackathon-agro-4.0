@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AgroSynapse.View.OptionsPage"
+             Title="Options">
+    <ScrollView>
+        <VerticalStackLayout Spacing="20" Padding="20">
+            <Label Text="Metodo de Obtenção da Bula:" FontSize="16" />
+            <!-- Picker para seleção de método -->
+            <Picker x:Name="MethodPicker"
+                Title="Selecione o método"
+                BackgroundColor="GhostWhite"
+                TextColor="Black"
+                FontSize="14">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Azure Search</x:String>
+                        <x:String>Azure Search RAG</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+
+            <Button Text="Salvar" 
+                    BackgroundColor="#4CAF50" 
+                    TextColor="White" 
+                    CornerRadius="10" 
+                    Clicked="OnSaveClicked"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

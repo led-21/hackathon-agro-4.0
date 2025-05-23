@@ -14,9 +14,12 @@
             <Border BackgroundColor="{DynamicResource BorderColor}" Padding="10">
                 <VerticalStackLayout Spacing="10">
                     <Label Text="Insira o Receituário Agronômico" FontSize="18" FontAttributes="Bold"/>
-                    <Entry x:Name="PrescriptionEntry" Placeholder="Digite ou cole o receituário aqui..." 
-                           HeightRequest="100" FontSize="14" IsTextPredictionEnabled="False" 
-                           TextColor="{DynamicResource PrimaryTextColor}"/>
+                    <Editor 
+                        x:Name="PrescriptionEntry" 
+                        Placeholder="Digite ou cole o receituário aqui..." 
+                        HeightRequest="600" FontSize="14" 
+                        IsTextPredictionEnabled="False" 
+                        TextColor="{DynamicResource PrimaryDark}"/>
                     <Button Text="Analisar Receituário" x:Name="AnalyzeButton" 
                             Clicked="OnAnalyzeButtonClicked" BackgroundColor="#4CAF50" TextColor="White" CornerRadius="10"/>
                 </VerticalStackLayout>
@@ -29,8 +32,8 @@
             <Border x:Name="ResultFrame" IsVisible="False" BackgroundColor="{DynamicResource BorderColor}" Padding="10">
                 <VerticalStackLayout>
                     <Label Text="Resultado da Análise" FontSize="18" FontAttributes="Bold"/>
-                    <ScrollView HeightRequest="300">
-                        <Label x:Name="ResultLabel" FontSize="14" TextColor="{DynamicResource PrimaryTextColor}"/>
+                    <ScrollView HeightRequest="600">
+                        <WebView x:Name="ResultWebView"/>
                     </ScrollView>
                 </VerticalStackLayout>
             </Border>

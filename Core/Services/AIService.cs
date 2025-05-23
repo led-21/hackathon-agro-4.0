@@ -54,7 +54,8 @@ namespace Core.Services
                 "Seu objetivo é comparar o receituário e a bula fornecidos, identificando inconsistências e não conformidades." +
                 "Se houver alguma inconsistência ou não conformidade, forneça uma explicação detalhada e sugira correções." +
                 "Se tudo estiver correto, informe que não há inconsistências ou não conformidades." +
-                "Em caso de não conformidade envie a notificaçao" +
+                "Se estiver no intervalo ou for compativel com a bula oficial mesmo com outras palavras está conforme" +
+                "Em apenas caso de algum item Não conforme enviar notificaçao" +
                 $"Exemplo de resposta: {AgronomicMockData.exemplo}");
 
             chatHistory.AddUserMessage("Compare o receituário e a bula fornecidos, identificando inconsistências e não conformidades." +
@@ -92,7 +93,10 @@ namespace Core.Services
 
             var searchResults = await searchClient.SearchAsync<SearchDocument>(receituario, searchOptions);
 
-            return searchResults.Value.GetResults().First().Document.ToString();
+            var result = searchResults.Value.GetResults().First().Document.ToString();
+            Console.WriteLine(result);
+
+            return result;
         }
 
         public async Task<string> BuscarRAG(string receituario)
@@ -104,8 +108,11 @@ namespace Core.Services
 
             var searchResults = await searchClientRAG.SearchAsync<SearchDocument>(receituario, searchOptions);
 
-            return string.Concat(searchResults.Value.GetResults()
+            var result = string.Concat(searchResults.Value.GetResults()
                 .Select(x => x.Document["chunk"]).ToList());
+            Console.WriteLine(result);
+
+            return result;
         }
     }
 }
